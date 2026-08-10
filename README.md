@@ -5,7 +5,7 @@
 A microservices application to help doctors detect the risk of type 2 diabetes in patients.
 
 ## Technologies
-
+ 
 - **Java 17**
 - **Spring Boot 3.2.0**
 - **Spring Cloud Gateway 2023.0.0**
