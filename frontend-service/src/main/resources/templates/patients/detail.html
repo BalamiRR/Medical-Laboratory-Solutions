@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dossier Patient</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .note-text { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+
+    <!-- Hasta Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0" th:text="${patient.lastName + ' ' + patient.firstName}"></h5>
+            <a th:href="@{/patients/edit/{id}(id=${patient.id})}" class="btn btn-sm btn-light">Modifier</a>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Date de naissance :</strong> <span th:text="${patient.birthDate}"></span></p>
+                    <p><strong>Genre :</strong> <span th:text="${patient.gender}"></span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Adresse :</strong> <span th:text="${patient.address != null ? patient.address : '-'}"></span></p>
+                    <p><strong>Téléphone :</strong> <span th:text="${patient.phoneNumber != null ? patient.phoneNumber : '-'}"></span></p>
+                </div>
+            </div>
+            <div class="mt-2">
+                <strong>Risque diabète :</strong>
+                <span th:text="${risk}" class="badge fs-6"
+                      th:class="${risk == 'None'} ? 'badge fs-6 bg-success' :
+                (${risk == 'Borderline'} ? 'badge fs-6 bg-warning text-dark' :
+                (${risk == 'In Danger'} ? 'badge fs-6 text-bg-warning' : 'badge fs-6 bg-danger'))">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notlar -->
+    <h5 class="mb-3">Historique des notes</h5>
+
+    <div th:if="${#lists.isEmpty(notes)}" class="alert alert-info">
+        Aucune note pour ce patient.
+    </div>
+
+    <div th:each="note : ${notes}" class="card mb-2">
+        <div class="card-body">
+
+            <!-- Normal görünüm -->
+            <div th:if="${editNote == null or !editNote.id.equals(note.id)}">
+                <p class="note-text mb-2" th:text="${note.note}"></p>
+                <a th:href="@{/patients/{pid}/notes/edit/{nid}(pid=${patient.id}, nid=${note.id})}"
+                   class="btn btn-sm btn-warning">Modifier</a>
+
+                <form th:action="@{/patients/{pid}/notes/delete/{nid}(pid=${patient.id}, nid=${note.id})}"
+                      method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Supprimer cette note ?')">Supprimer</button>
+                </form>
+            </div>
+
+            <!-- Edit formu -->
+            <div th:if="${editNote != null and editNote.id.equals(note.id)}">
+                <form th:action="@{/patients/{pid}/notes/edit/{nid}(pid=${patient.id}, nid=${note.id})}"
+                      method="post">
+                    <div class="mb-2">
+                        <textarea class="form-control" name="note"
+                                  rows="4" required
+                                  th:text="${note.note}"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-success">Enregistrer</button>
+                    <a th:href="@{/patients/{id}(id=${patient.id})}"
+                       class="btn btn-sm btn-secondary">Annuler</a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Yeni Not Ekle -->
+    <div class="card mt-4">
+        <div class="card-header bg-secondary text-white">
+            <h6 class="mb-0">Ajouter une note</h6>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/patients/{id}/notes/add(id=${patient.id})}"
+                  th:object="${newNote}" method="post">
+                <input type="hidden" name="patientLastName" th:value="${patient.lastName}">
+                <div class="mb-3">
+                    <textarea class="form-control" th:field="*{note}"
+                              rows="4"
+                              placeholder="Saisir la note du médecin..."
+                              required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+                <a href="/" class="btn btn-secondary">Retour</a>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

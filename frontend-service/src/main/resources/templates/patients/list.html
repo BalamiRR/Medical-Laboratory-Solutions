@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mediscreen - Patients</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Liste des patients</h2>
+    <a href="/patients/add" class="btn btn-primary mb-3">Ajouter un patient</a>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Genre</th>
+            <th>Adresse</th>
+            <th>Téléphone</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.lastName}"></td>
+            <td th:text="${patient.firstName}"></td>
+            <td th:text="${patient.birthDate}"></td>
+            <td th:text="${patient.gender}"></td>
+            <td th:text="${patient.address != null ? patient.address : '-'}"></td>
+            <td th:text="${patient.phoneNumber != null ? patient.phoneNumber : '-'}"></td>
+            <td>
+                <a th:href="@{/patients/{id}(id=${patient.id})}"
+                   class="btn btn-sm btn-info">Records</a>
+                <a th:href="@{/patients/edit/{id}(id=${patient.id})}"
+                   class="btn btn-sm btn-warning">Modifier</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
