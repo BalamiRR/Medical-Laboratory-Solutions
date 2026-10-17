@@ -1,6 +1,6 @@
 # Medical Laboratory Solutions
 
-<img width="851" height="365" alt="image" src="https://github.com/user-attachments/assets/9ce22244-8080-41d4-83da-6aaa8f4f1508" />
+<img width="1920" height="1080" alt="White and Blue Illustrative Medical Center Services Presentation" src="https://github.com/user-attachments/assets/3c5c452b-f5a6-4732-992e-bd0cc0f24ace" />
 
 A microservices application to help doctors detect the risk of type 2 diabetes in patients.
 
