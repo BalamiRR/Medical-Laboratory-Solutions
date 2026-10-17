@@ -1,6 +1,6 @@
-# MediLabo Solutions
+# Medical Laboratory Solutions
 
-<img width="643" height="272" alt="image" src="https://github.com/user-attachments/assets/fd13e25c-e7fa-453d-a375-6e6b7bcda671" />
+<img width="851" height="365" alt="image" src="https://github.com/user-attachments/assets/9ce22244-8080-41d4-83da-6aaa8f4f1508" />
 
 A microservices application to help doctors detect the risk of type 2 diabetes in patients.
 
