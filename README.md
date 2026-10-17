@@ -25,22 +25,45 @@ MediLabo Solutions is a microservices-based application designed to help doctors
 | frontend-service | Spring Boot + Thymeleaf | 8083 |
 | gateway-service | Spring Cloud Gateway | 8082 |
 
-## Getting Started
+### Run the application
 
 ```bash
 docker-compose up --build
 ```
 
-Open: http://localhost:8082
+Open your browser at: **http://localhost:8082**
 
-## Green Code
+### Run locally (without Docker)
 
-**Implemented:**
-- Lightweight Docker images (Alpine Linux)
-- Right database for each use case
-- No database in risk-service
+Start each service individually from IntelliJ or with:
 
-**Suggestions:**
-- Add pagination
-- Add caching
-- Enable HTTP compression
+```bash
+mvn spring-boot:run
+```
+
+---
+
+## Risk Levels
+
+| Level | Description |
+|---|---|
+| 🟢 None | No trigger terms found |
+| 🟡 Borderline | 2-5 triggers, patient over 30 |
+| 🟠 In Danger | Depends on age and gender |
+| 🔴 Early Onset | High risk, early appearance |
+
+---
+
+## ♻️ Green Code
+
+### Implemented
+- ✅ Lightweight Docker images with Alpine Linux (~5MB vs ~200MB)
+- ✅ Right database chosen for each use case (MySQL + MongoDB)
+- ✅ No database in risk-service, no unnecessary storage
+- ✅ Microservices architecture, scale only what is needed
+
+---
+
+## 👤 Author
+
+### Fuat Kara
