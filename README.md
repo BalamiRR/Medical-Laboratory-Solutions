@@ -2,7 +2,7 @@
 
 <img width="1920" height="1080" alt="White and Blue Illustrative Medical Center Services Presentation" src="https://github.com/user-attachments/assets/3c5c452b-f5a6-4732-992e-bd0cc0f24ace" />
 
-A microservices application to help doctors detect the risk of type 2 diabetes in patients.
+MediLabo Solutions is a microservices-based application designed to help doctors detect the risk of type 2 diabetes in patients. It allows medical staff to manage patient records, add doctor notes, and automatically calculate the diabetes risk level based on patient age, gender, and medical history.
 
 ## Technologies
  
